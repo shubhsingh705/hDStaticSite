@@ -6,7 +6,7 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link} from "gatsby"
 import { Grid2, Typography } from "@mui/material"
 // import coverrImage from '../images/coverImage.jpg' 
 import { StaticImage } from 'gatsby-plugin-image'

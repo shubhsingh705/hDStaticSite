@@ -189,7 +189,7 @@ Cadillac, and Chevrolet. You can also explore information about
 different car body types, making it easier to understand your vehicle's
 unique design and requirements.
 
-![A screenshot from the documentation](./hyperdart_car.png)
+![A screenshot from the documentation](./hyperdart_car.jpg)
 
 **Pro-Tip:** Always check your owner's manual for model-specific
 jump-starting instructions, as some vehicles require special steps to
