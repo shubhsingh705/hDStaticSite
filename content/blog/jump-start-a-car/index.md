@@ -2,6 +2,8 @@
 title: jump start a car
 date: "2025-09-23T22:12:03.284Z"
 description: "learing about how to jump start a car in case of an emergency"
+author: "Karishma Gupta"
+timeToRead: "3 mins"
 ---
 
 Learning how to jumpstart a car is an essential skill every driver

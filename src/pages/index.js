@@ -1,13 +1,19 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
-import { Card, Typography, Grid } from "@mui/material"
+import { graphql } from "gatsby"
+import { Card, Grid2 } from "@mui/material"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import BlogCard from "../components/BlogCard"
+import Tabs from "../components/Tabs"
+import { useState } from "react"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
+  const posterImages = data.allImageSharp.nodes;
+  console.log('allImageSharp', data)
+  const [selectedTab, setSelectedTab] = useState(0)
 
   if (posts.length === 0) {
     return (
@@ -25,43 +31,28 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
-      <ol style={{ listStyle: `none` }}>
-        <Grid container spacing={2}>
-          {posts.map(post => {
-            const title = post.frontmatter.title || post.fields.slug
-            return (
-              <Grid item xs={12} sm={6} key={post.fields.slug}>
-                <Card style={{padding:'20px', borderRadius:'15px', marginBottom:'20px'}}>
-                  <li key={post.fields.slug}>
-                    <article
-                      className="post-list-item"
-                      itemScope
-                      itemType="http://schema.org/Article"
-                    >
-                      <header>
-                        <h2>
-                          <Link to={post.fields.slug} itemProp="url">
-                            <span itemProp="headline">{title}</span>
-                          </Link>
-                        </h2>
-                        <small>{post.frontmatter.date}</small>
-                      </header>
-                      <section>
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html: post.frontmatter.description || post.excerpt,
-                          }}
-                          itemProp="description"
-                        />
-                      </section>
-                    </article>
-                  </li>
-                </Card>
-              </Grid>
-            )
-          })}
-        </Grid>
-      </ol>
+      <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      {selectedTab == 0 ? 
+        <ol style={{ listStyle: `none` }}>
+          <Grid2 container columnSpacing={3} rowSpacing={5}>
+            {posts.map(post => {
+              const title = post.frontmatter.title || post.fields.slug
+              const image = posterImages.find(image => image.parent.name == post.fields.slug.replace(/\//g, ''));
+              return (
+                <BlogCard post={post} title={title} key={post.fields.slug} image={image} />
+              )
+            })}
+          </Grid2>
+        </ol>
+      :null}
+
+      {selectedTab == 1 ? 
+        <h5>Company</h5>
+      :null}
+
+      {selectedTab == 2 ? 
+        <h5>About Us</h5>
+      :null}
     </Layout>
   )
 }
@@ -92,8 +83,25 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          author
+          timeToRead
         }
       }
     }
+    allImageSharp {
+    nodes {
+      id
+      gatsbyImageData(
+        transformOptions: {cropFocus: CENTER}
+        placeholder: BLURRED
+        aspectRatio: 1.5
+      )
+      parent {
+        ... on File {
+          name
+        }
+      }
+    }
+  }
   }
 `

@@ -2,6 +2,8 @@
 title: Best 8 seater family car
 date: "2025-09-23T22:12:03.284Z"
 description: "Choosing best 8 seater family car in 2025"
+author: "Karishma Gupta"
+timeToRead: "3 mins"
 ---
 
 **Top Tips to Choose the Best 8-Seater Family Car in 2025**

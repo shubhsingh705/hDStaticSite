@@ -2,6 +2,8 @@
 title: Best family car
 date: "2025-09-23T22:12:03.284Z"
 description: "Choosing the best family car in 2025"
+author: "Karishma Gupta"
+timeToRead: "3 mins"
 ---
 
 # Best Family Car 2025: A Complete Guide for Families

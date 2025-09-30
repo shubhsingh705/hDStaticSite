@@ -11,16 +11,17 @@ module.exports = {
   siteMetadata: {
     title: `hyperDart Blogs`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Shubh Singh`,
+      summary: `A developer in hyperDart's engineering team.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://hyperdart.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `shubh_singh`,
     },
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -56,9 +57,8 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-material-ui`,    
+    `gatsby-transformer-sharp`,    
     {
       resolve: `gatsby-plugin-feed`,
       options: {
