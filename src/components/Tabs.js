@@ -6,7 +6,7 @@ function Tabscomponent({selectedTab, setSelectedTab}){
         <Box
             sx={{
                 width:'100%',
-                backgroundColor:'##b5b5b5'
+                // backgroundColor:'#b5b5b5'
             }}
         >
             <Tabs

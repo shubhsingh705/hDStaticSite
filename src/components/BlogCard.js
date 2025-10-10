@@ -5,16 +5,20 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 function BlogCard(props){
     const {post, title, image} = props;
-    console.log('image in post', post, title)
+    
     const imageToPass = getImage(image);
+    console.log('image in post', imageToPass)
     return(
-        <Grid2 size={{xs:12, sm:6}} key={post.fields.slug}>
-            <Link to={post.fields.slug}>
+        <Grid2 
+            size={{xs:12, sm:6}} 
+            key={post.fields.slug}
+        >
+            <Link to={post.fields.slug} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <GatsbyImage 
                     image={imageToPass}
                     alt="PosterImage"
                 />
-            </Link>
+            
             <Typography variant="caption" color="textSecondary">
                 <span style={{fontWeight:'bold'}}>{post.frontmatter.author}</span>
                 <span> | </span>
@@ -24,6 +28,7 @@ function BlogCard(props){
             </Typography>
             <Typography variant="h5" sx={{fontWeight:'bold'}}>{post.frontmatter.description}</Typography>
             <Typography variant="body2" color="textSecondary">{post.excerpt}</Typography>
+            </Link>
         </Grid2>
     )
 }

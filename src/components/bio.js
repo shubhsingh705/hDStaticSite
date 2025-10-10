@@ -10,7 +10,6 @@ import { Link} from "gatsby"
 import { Grid2, Typography } from "@mui/material"
 // import coverrImage from '../images/coverImage.jpg' 
 import { StaticImage } from 'gatsby-plugin-image'
-
 const Bio = () => {
   // const data = useStaticQuery(graphql`
   //   query BioQuery {
@@ -40,7 +39,8 @@ const Bio = () => {
         height: '320px',
         position: 'relative',
         sm:{ height: '400px' }
-      }}>
+      }}
+    >
       <Typography 
         sx={{
           position:'absolute',
@@ -55,6 +55,7 @@ const Bio = () => {
             cursor:'pointer',
           }
         }}
+        onClick={() => { window.location.href = 'https://hyperdart.com'}}
       >
         hyperDart
       </Typography>
@@ -68,39 +69,14 @@ const Bio = () => {
           fontSize:'15px',
           color:'rgb(240, 95, 64)',
           zIndex:'1',
+          '&:hover':{
+            cursor:'pointer',
+          }
         }}
+        onClick={() => { window.location.href = 'https://hyperdart.com'}}
       >
         future of search engine
       </Typography>
-      {/* <Typography 
-        sx={{
-          position:'absolute',
-          right:'100px',
-          top:'50px', 
-          fontFamily:'Quicksand',
-          fontWeight:'bold',
-          fontSize:'30px',
-          color:'rgb(240, 95, 64)',
-          zIndex:'1',
-        }}
-      >
-        Our aim
-      </Typography>
-      <Typography 
-        sx={{
-          position:'absolute',
-          right:'20px',
-          top:'70px', 
-          fontFamily:'Quicksand',
-          fontWeight:'bold',
-          fontSize:'15px',
-          color:'rgb(240, 95, 64)',
-          zIndex:'1',
-          maxWidth:'250px'
-        }}
-      >
-        To present information through 'expert-powered smart cards'—called Darts—which are curated by knowledgeable creators in various fields, providing context-rich, trustworthy results beyond traditional algorithm-driven search engines
-      </Typography> */}
       <StaticImage 
         src={'../images/coverImage.jpg'}
         alt={'hyperdartImage'}

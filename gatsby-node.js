@@ -27,6 +27,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
+      allWpPost(sort: { date: ASC }) {
+        nodes {
+          id
+          uri
+        }
+      }
     }
   `)
 
@@ -39,23 +45,35 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const posts = result.data.allMarkdownRemark.nodes
-
+  const postsWp = result.data.allWpPost.nodes
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+  const combinedPosts = posts.concat(postsWp);
+  if (combinedPosts.length > 0) {
+    
+    combinedPosts.forEach((post, index) => {
+      // 1. DETERMINE THE CORRECT PATH (URL)
+      // If the post has a 'uri' property, it is from WordPress.
+      // Otherwise, assume it is Markdown and use 'fields.slug'.
+      const postPath = post.uri // This will be defined for WP posts
+        ? post.uri 
+        : post.fields.slug; // This will be defined for Markdown posts
+      
+      const previousPostId = index === 0 ? null : combinedPosts[index - 1].id
+      const nextPostId = index === combinedPosts.length - 1 ? null : combinedPosts[index + 1].id
 
       createPage({
-        path: post.fields.slug,
+        // 2. USE THE DETERMINED PATH
+        path: postPath, 
         component: blogPost,
         context: {
           id: post.id,
           previousPostId,
           nextPostId,
+          // OPTIONAL: Add a source type to help the template query correctly
+          sourceType: post.uri ? 'wordpress' : 'markdown',
         },
       })
     })

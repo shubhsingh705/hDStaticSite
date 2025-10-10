@@ -21,6 +21,26 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        // The URL of your local WordPress GraphQL endpoint
+        // Use the 'Site domain' from Local by Flywheel, followed by /graphql
+        url: `http://hd-headless-cms.local/graphql`, 
+        // Or if you prefer the Live Link URL (if enabled in Local by Flywheel)
+        // url: `https://YOUR_LIVE_LINK_ID.localwp.com/graphql`, 
+      }
+    },
+    {
+      resolve: "gatsby-plugin-page-progress",
+      options: {
+        includePaths: [{ regex: "^/blog" }], 
+        height: 3,
+        color: `#f05f40`,
+        headerHeight: 0, 
+        footerHeight: 0, 
+      }
+    },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-image`,
     {

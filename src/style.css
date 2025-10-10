@@ -12,6 +12,7 @@
   --maxWidth-4xl: 56rem;
   --maxWidth-full: "100%";
   --maxWidth-wrapper: var(--maxWidth-2xl);
+  --maxWidth-wrapper2: var(--maxWidth-3xl);
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -244,8 +245,15 @@ a:focus {
   padding: var(--spacing-10) var(--spacing-5);
 }
 
+.global-wrapper2 {
+  margin: 0 auto var(--spacing-0);
+  max-width: var(--maxWidth-wrapper2);
+  padding: var(--spacing-10) var(--spacing-5);
+}
+
 .global-wrapper[data-is-root-path="true"] .bio {
   margin-bottom: var(--spacing-20);
+  max-width: var(--maxWidth-wrapper2);
 }
 
 .global-header {
@@ -311,6 +319,13 @@ a:focus {
 
 .blog-post-nav ul {
   margin: var(--spacing-0);
+}
+
+.blog-post img {
+  max-width: 100%; /* Ensures image doesn't overflow its container */
+  height: auto;    /* Maintains the image's aspect ratio */
+  display: block;  /* Helps with centering */
+  margin: 0 auto;
 }
 
 .gatsby-highlight {
